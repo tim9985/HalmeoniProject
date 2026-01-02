@@ -1,13 +1,19 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "할매 프로젝트 백엔드 서버",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "halmeoni",
+    "bus",
+    "weather",
+    "youtube"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -15,6 +21,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "mysql2": "^3.16.0",
     "nodemon": "^3.1.11",
     "xml2js": "^0.6.2"
   }

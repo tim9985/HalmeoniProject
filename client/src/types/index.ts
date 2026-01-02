@@ -1,16 +1,25 @@
 // src/types/index.ts
 export interface WeatherData {
-  temp: number;
-  condition: string; // 예: "맑음", "흐림"
+  temp: number | null;
+  condition: string;
   icon: string;
 }
 
 export interface BusArrival {
-  busNum: string;
-  remainTime: number; // 분 단위
+  busNum?: string;
+  min: number | null;
+  station?: string;
+  stopName?: string;
+  message?: string;
 }
 
-export interface YouTubeLink {
-  title: string;
+export interface YouTubeVideo {
+  title?: string;
   url: string;
+}
+
+export interface BibleVerse {
+  reference: string;
+  text: string;
+  date?: string;
 }
