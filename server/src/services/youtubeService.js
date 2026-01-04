@@ -12,7 +12,7 @@ class YouTubeService {
 
   /**
    * 주일 1부 또는 2부 메세지 최신 영상 조회 (본문 포함)
-   * @param {number} part - 1 또는 2
+   * @param {number} part - 1 또는 2 몇부 예배인지 나타내는 인자
    */
   async getLatestSermon(part) {
     if (!this.apiKey || this.apiKey.startsWith('UC')) {
@@ -46,8 +46,8 @@ class YouTubeService {
         };
       }
 
-      // 「」 괄호와 () 구절 패턴이 있는 영상만 필터링
-      const messageRegex = /주일 [12]부 「.+」 \((.+)\)$/;
+      // 「」 괄호와 () 구절 패턴이 있는 영상만 필터링 (정확한 부수 매칭)
+      const messageRegex = new RegExp(`주일 ${part}부 「.+」 \\((.+)\\)$`);
       const matchingVideos = videos.filter(v => {
         const title = v.snippet.title;
         return messageRegex.test(title);
@@ -93,7 +93,7 @@ class YouTubeService {
    */
   extractBibleReference(title) {
     // '주일 1부' 또는 '주일 2부' 뒤에 '「'가 오고 마지막에 '(구절)'이 오는 패턴
-    const messageRegex = /주일 [12]부 「.+」 \((.+)\)$/;
+    const messageRegex = /주일 [12]부 「.+?」 \((.+?)\)/;
     const match = title.match(messageRegex);
     
     if (match && match[1]) {
